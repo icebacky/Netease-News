@@ -7,46 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6FCFC4F21C05CC05002156B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC4F11C05CC05002156B5 /* main.m */; };
-		6FCFC4F51C05CC05002156B5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC4F41C05CC05002156B5 /* AppDelegate.m */; };
+		6FC42E361C05E35100456167 /* HotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC42E1B1C05E35100456167 /* HotViewController.m */; };
+		6FC42E371C05E35100456167 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC42E1E1C05E35100456167 /* NewsViewController.m */; };
+		6FC42E381C05E35100456167 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC42E221C05E35100456167 /* UIView+Frame.m */; };
+		6FC42E391C05E35100456167 /* ScienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC42E251C05E35100456167 /* ScienceViewController.m */; };
+		6FC42E3A1C05E35100456167 /* SocietyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC42E281C05E35100456167 /* SocietyViewController.m */; };
+		6FC42E3B1C05E35100456167 /* SubscribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC42E2B1C05E35100456167 /* SubscribeViewController.m */; };
+		6FC42E3C1C05E35100456167 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC42E2E1C05E35100456167 /* AppDelegate.m */; };
+		6FC42E3D1C05E35100456167 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC42E2F1C05E35100456167 /* main.m */; };
+		6FC42E3E1C05E35100456167 /* TopLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC42E321C05E35100456167 /* TopLineViewController.m */; };
+		6FC42E3F1C05E35100456167 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FC42E351C05E35100456167 /* VideoViewController.m */; };
 		6FCFC4FB1C05CC05002156B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FCFC4F91C05CC05002156B5 /* Main.storyboard */; };
 		6FCFC4FD1C05CC05002156B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FCFC4FC1C05CC05002156B5 /* Assets.xcassets */; };
 		6FCFC5001C05CC05002156B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FCFC4FE1C05CC05002156B5 /* LaunchScreen.storyboard */; };
-		6FCFC5091C05CC27002156B5 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC5081C05CC27002156B5 /* NewsViewController.m */; };
-		6FCFC50C1C05CC38002156B5 /* TopLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC50B1C05CC38002156B5 /* TopLineViewController.m */; };
-		6FCFC50F1C05CC3D002156B5 /* HotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC50E1C05CC3D002156B5 /* HotViewController.m */; };
-		6FCFC5121C05CC46002156B5 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC5111C05CC46002156B5 /* VideoViewController.m */; };
-		6FCFC5151C05CC58002156B5 /* SocietyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC5141C05CC58002156B5 /* SocietyViewController.m */; };
-		6FCFC5181C05CC6B002156B5 /* SubscribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC5171C05CC6B002156B5 /* SubscribeViewController.m */; };
-		6FCFC51B1C05CC7C002156B5 /* ScienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC51A1C05CC7C002156B5 /* ScienceViewController.m */; };
-		6FCFC51E1C05CF1A002156B5 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCFC51D1C05CF1A002156B5 /* UIView+Frame.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6FC42E1A1C05E35100456167 /* HotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotViewController.h; sourceTree = "<group>"; };
+		6FC42E1B1C05E35100456167 /* HotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotViewController.m; sourceTree = "<group>"; };
+		6FC42E1D1C05E35100456167 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		6FC42E1E1C05E35100456167 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		6FC42E211C05E35100456167 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		6FC42E221C05E35100456167 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		6FC42E241C05E35100456167 /* ScienceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScienceViewController.h; sourceTree = "<group>"; };
+		6FC42E251C05E35100456167 /* ScienceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScienceViewController.m; sourceTree = "<group>"; };
+		6FC42E271C05E35100456167 /* SocietyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocietyViewController.h; sourceTree = "<group>"; };
+		6FC42E281C05E35100456167 /* SocietyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocietyViewController.m; sourceTree = "<group>"; };
+		6FC42E2A1C05E35100456167 /* SubscribeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscribeViewController.h; sourceTree = "<group>"; };
+		6FC42E2B1C05E35100456167 /* SubscribeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribeViewController.m; sourceTree = "<group>"; };
+		6FC42E2D1C05E35100456167 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6FC42E2E1C05E35100456167 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6FC42E2F1C05E35100456167 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6FC42E311C05E35100456167 /* TopLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopLineViewController.h; sourceTree = "<group>"; };
+		6FC42E321C05E35100456167 /* TopLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopLineViewController.m; sourceTree = "<group>"; };
+		6FC42E341C05E35100456167 /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
+		6FC42E351C05E35100456167 /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
 		6FCFC4ED1C05CC05002156B5 /* 网易新闻.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "网易新闻.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6FCFC4F11C05CC05002156B5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6FCFC4F31C05CC05002156B5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		6FCFC4F41C05CC05002156B5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6FCFC4FA1C05CC05002156B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6FCFC4FC1C05CC05002156B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6FCFC4FF1C05CC05002156B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6FCFC5011C05CC05002156B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6FCFC5071C05CC27002156B5 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
-		6FCFC5081C05CC27002156B5 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
-		6FCFC50A1C05CC38002156B5 /* TopLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopLineViewController.h; sourceTree = "<group>"; };
-		6FCFC50B1C05CC38002156B5 /* TopLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopLineViewController.m; sourceTree = "<group>"; };
-		6FCFC50D1C05CC3D002156B5 /* HotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotViewController.h; sourceTree = "<group>"; };
-		6FCFC50E1C05CC3D002156B5 /* HotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotViewController.m; sourceTree = "<group>"; };
-		6FCFC5101C05CC46002156B5 /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
-		6FCFC5111C05CC46002156B5 /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
-		6FCFC5131C05CC58002156B5 /* SocietyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocietyViewController.h; sourceTree = "<group>"; };
-		6FCFC5141C05CC58002156B5 /* SocietyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocietyViewController.m; sourceTree = "<group>"; };
-		6FCFC5161C05CC6B002156B5 /* SubscribeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscribeViewController.h; sourceTree = "<group>"; };
-		6FCFC5171C05CC6B002156B5 /* SubscribeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribeViewController.m; sourceTree = "<group>"; };
-		6FCFC5191C05CC7C002156B5 /* ScienceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScienceViewController.h; sourceTree = "<group>"; };
-		6FCFC51A1C05CC7C002156B5 /* ScienceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScienceViewController.m; sourceTree = "<group>"; };
-		6FCFC51C1C05CF1A002156B5 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
-		6FCFC51D1C05CF1A002156B5 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +60,112 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6FC42E181C05E35100456167 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6FC42E191C05E35100456167 /* Hot(热点) */,
+				6FC42E1C1C05E35100456167 /* Main(主界面) */,
+				6FC42E1F1C05E35100456167 /* Other(其它) */,
+				6FC42E231C05E35100456167 /* Science(科技) */,
+				6FC42E261C05E35100456167 /* Society(社会) */,
+				6FC42E291C05E35100456167 /* Subscribe(订阅) */,
+				6FC42E2C1C05E35100456167 /* System */,
+				6FC42E301C05E35100456167 /* TopLine(头条) */,
+				6FC42E331C05E35100456167 /* Video(视频) */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		6FC42E191C05E35100456167 /* Hot(热点) */ = {
+			isa = PBXGroup;
+			children = (
+				6FC42E1A1C05E35100456167 /* HotViewController.h */,
+				6FC42E1B1C05E35100456167 /* HotViewController.m */,
+			);
+			path = "Hot(热点)";
+			sourceTree = "<group>";
+		};
+		6FC42E1C1C05E35100456167 /* Main(主界面) */ = {
+			isa = PBXGroup;
+			children = (
+				6FC42E1D1C05E35100456167 /* NewsViewController.h */,
+				6FC42E1E1C05E35100456167 /* NewsViewController.m */,
+			);
+			path = "Main(主界面)";
+			sourceTree = "<group>";
+		};
+		6FC42E1F1C05E35100456167 /* Other(其它) */ = {
+			isa = PBXGroup;
+			children = (
+				6FC42E201C05E35100456167 /* Category */,
+			);
+			path = "Other(其它)";
+			sourceTree = "<group>";
+		};
+		6FC42E201C05E35100456167 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				6FC42E211C05E35100456167 /* UIView+Frame.h */,
+				6FC42E221C05E35100456167 /* UIView+Frame.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		6FC42E231C05E35100456167 /* Science(科技) */ = {
+			isa = PBXGroup;
+			children = (
+				6FC42E241C05E35100456167 /* ScienceViewController.h */,
+				6FC42E251C05E35100456167 /* ScienceViewController.m */,
+			);
+			path = "Science(科技)";
+			sourceTree = "<group>";
+		};
+		6FC42E261C05E35100456167 /* Society(社会) */ = {
+			isa = PBXGroup;
+			children = (
+				6FC42E271C05E35100456167 /* SocietyViewController.h */,
+				6FC42E281C05E35100456167 /* SocietyViewController.m */,
+			);
+			path = "Society(社会)";
+			sourceTree = "<group>";
+		};
+		6FC42E291C05E35100456167 /* Subscribe(订阅) */ = {
+			isa = PBXGroup;
+			children = (
+				6FC42E2A1C05E35100456167 /* SubscribeViewController.h */,
+				6FC42E2B1C05E35100456167 /* SubscribeViewController.m */,
+			);
+			path = "Subscribe(订阅)";
+			sourceTree = "<group>";
+		};
+		6FC42E2C1C05E35100456167 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				6FC42E2D1C05E35100456167 /* AppDelegate.h */,
+				6FC42E2E1C05E35100456167 /* AppDelegate.m */,
+				6FC42E2F1C05E35100456167 /* main.m */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		6FC42E301C05E35100456167 /* TopLine(头条) */ = {
+			isa = PBXGroup;
+			children = (
+				6FC42E311C05E35100456167 /* TopLineViewController.h */,
+				6FC42E321C05E35100456167 /* TopLineViewController.m */,
+			);
+			path = "TopLine(头条)";
+			sourceTree = "<group>";
+		};
+		6FC42E331C05E35100456167 /* Video(视频) */ = {
+			isa = PBXGroup;
+			children = (
+				6FC42E341C05E35100456167 /* VideoViewController.h */,
+				6FC42E351C05E35100456167 /* VideoViewController.m */,
+			);
+			path = "Video(视频)";
+			sourceTree = "<group>";
+		};
 		6FCFC4E41C05CC05002156B5 = {
 			isa = PBXGroup;
 			children = (
@@ -79,29 +185,12 @@
 		6FCFC4EF1C05CC05002156B5 /* 网易新闻 */ = {
 			isa = PBXGroup;
 			children = (
-				6FCFC4F31C05CC05002156B5 /* AppDelegate.h */,
-				6FCFC4F41C05CC05002156B5 /* AppDelegate.m */,
+				6FC42E181C05E35100456167 /* Classes */,
 				6FCFC4F91C05CC05002156B5 /* Main.storyboard */,
 				6FCFC4FC1C05CC05002156B5 /* Assets.xcassets */,
 				6FCFC4FE1C05CC05002156B5 /* LaunchScreen.storyboard */,
 				6FCFC5011C05CC05002156B5 /* Info.plist */,
-				6FCFC51C1C05CF1A002156B5 /* UIView+Frame.h */,
-				6FCFC51D1C05CF1A002156B5 /* UIView+Frame.m */,
 				6FCFC4F01C05CC05002156B5 /* Supporting Files */,
-				6FCFC5071C05CC27002156B5 /* NewsViewController.h */,
-				6FCFC5081C05CC27002156B5 /* NewsViewController.m */,
-				6FCFC50A1C05CC38002156B5 /* TopLineViewController.h */,
-				6FCFC50B1C05CC38002156B5 /* TopLineViewController.m */,
-				6FCFC50D1C05CC3D002156B5 /* HotViewController.h */,
-				6FCFC50E1C05CC3D002156B5 /* HotViewController.m */,
-				6FCFC5101C05CC46002156B5 /* VideoViewController.h */,
-				6FCFC5111C05CC46002156B5 /* VideoViewController.m */,
-				6FCFC5131C05CC58002156B5 /* SocietyViewController.h */,
-				6FCFC5141C05CC58002156B5 /* SocietyViewController.m */,
-				6FCFC5161C05CC6B002156B5 /* SubscribeViewController.h */,
-				6FCFC5171C05CC6B002156B5 /* SubscribeViewController.m */,
-				6FCFC5191C05CC7C002156B5 /* ScienceViewController.h */,
-				6FCFC51A1C05CC7C002156B5 /* ScienceViewController.m */,
 			);
 			path = "网易新闻";
 			sourceTree = "<group>";
@@ -109,7 +198,6 @@
 		6FCFC4F01C05CC05002156B5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6FCFC4F11C05CC05002156B5 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -185,16 +273,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FCFC50C1C05CC38002156B5 /* TopLineViewController.m in Sources */,
-				6FCFC5091C05CC27002156B5 /* NewsViewController.m in Sources */,
-				6FCFC5121C05CC46002156B5 /* VideoViewController.m in Sources */,
-				6FCFC50F1C05CC3D002156B5 /* HotViewController.m in Sources */,
-				6FCFC51B1C05CC7C002156B5 /* ScienceViewController.m in Sources */,
-				6FCFC4F51C05CC05002156B5 /* AppDelegate.m in Sources */,
-				6FCFC5181C05CC6B002156B5 /* SubscribeViewController.m in Sources */,
-				6FCFC5151C05CC58002156B5 /* SocietyViewController.m in Sources */,
-				6FCFC51E1C05CF1A002156B5 /* UIView+Frame.m in Sources */,
-				6FCFC4F21C05CC05002156B5 /* main.m in Sources */,
+				6FC42E3F1C05E35100456167 /* VideoViewController.m in Sources */,
+				6FC42E3E1C05E35100456167 /* TopLineViewController.m in Sources */,
+				6FC42E3A1C05E35100456167 /* SocietyViewController.m in Sources */,
+				6FC42E381C05E35100456167 /* UIView+Frame.m in Sources */,
+				6FC42E361C05E35100456167 /* HotViewController.m in Sources */,
+				6FC42E371C05E35100456167 /* NewsViewController.m in Sources */,
+				6FC42E391C05E35100456167 /* ScienceViewController.m in Sources */,
+				6FC42E3B1C05E35100456167 /* SubscribeViewController.m in Sources */,
+				6FC42E3D1C05E35100456167 /* main.m in Sources */,
+				6FC42E3C1C05E35100456167 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +429,7 @@
 				6FCFC5061C05CC05002156B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
