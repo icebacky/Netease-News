@@ -209,6 +209,27 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
     
     // 记录选中按钮
     _selectedButton = button;
+    
+    // 让选中的按钮居中
+    [self setButtonAtCenter:button];
+}
+
+// 让选中的按钮居中显示
+- (void)setButtonAtCenter:(UIButton *)button
+{
+    // 设置标题滚动区域偏移量
+    CGFloat offsetX = button.centerX - screenW * 0.5;
+    
+    // 偏移量的最大最小值(最初和最末尾)
+    CGFloat maxOffsetX = _titleScrollView.contentSize.width - screenW;
+    CGFloat minOffsetX = 0;
+    // 开头和末尾的按钮不要居中, 不好看
+    offsetX = offsetX < minOffsetX ? minOffsetX : offsetX;
+    offsetX = offsetX > maxOffsetX ? maxOffsetX : offsetX;
+    
+    // 滚动区域
+    [_titleScrollView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+    
 }
 
 // 显示控制器view

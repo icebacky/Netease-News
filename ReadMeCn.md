@@ -220,3 +220,42 @@ static const CGFloat titleScrollViewH = 44;
 }
 ```
 要想取出按钮, 我们需要将之前添加的按钮保存起来, 创建一个可变数组, 在创建按钮的时候将其保存到里面, 等到需要用的时候就可以取出来了
+
+##按钮细节
+---
+
+显示某一view的时候, 为了美观会将该按钮居中显示(最前面和最后面的除外, 一边空着也不好看), 并且将该按钮放大, 之前选中的按钮缩小, 按钮的颜色要需要渐变
+
+###按钮居中显示
+
+按钮想要居中, 就需要计算它的偏移量:
+
+- 点击按钮的时候
+	- Btn.offSetX = Btn.centerX - screenW * 0.5;
+<br/><br/>
+- 滚动内容的时候
+	- 调用点击按钮实现<br/><br/>
+- 最开头的几个按钮不需要移动到中间
+	- MinOffsetX = 0<br/><br/>
+- 最末尾的几个按钮不需要移动到中间
+	- MaxOffsetX = ContentSizeW - screenW<br/><br/>
+	
+```
+// 让选中的按钮居中显示
+- (void)setButtonAtCenter:(UIButton *)button
+{
+    // 设置标题滚动区域偏移量
+    CGFloat offsetX = button.centerX - screenW * 0.5;
+    
+    // 偏移量的最大最小值(最初和最末尾)
+    CGFloat maxOffsetX = _titleScrollView.contentSize.width - screenW;
+    CGFloat minOffsetX = 0;
+    // 开头和末尾的按钮不要居中, 不好看
+    offsetX = offsetX < minOffsetX ? minOffsetX : offsetX;
+    offsetX = offsetX > maxOffsetX ? maxOffsetX : offsetX;
+    
+    // 滚动区域
+    [_titleScrollView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+    
+}
+```
