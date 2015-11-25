@@ -259,3 +259,106 @@ static const CGFloat titleScrollViewH = 44;
     
 }
 ```
+###按钮缩放
+按钮变化时候, 之前被选中的按钮缩小, 重新选中的按钮放大.
+
+这个在iPhone上, 这个缩放比例是1.3感觉正好
+
+根据内容滚动视图的偏移量, 可以计算出当前选中按钮的编号, 那么我们要做的就是, 缩小当前选中的按钮, 放大接下来要选中的按钮
+
+```
+// 选中按钮
+- (void)selectButton:(UIButton *)button
+{
+    // 还原上一个按钮
+    [_selectedButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    // 还原尺寸
+    _selectedButton.transform = CGAffineTransformIdentity;
+    
+    // 记录选中按钮
+    _selectedButton = button;
+    
+    // 选中按钮处理
+    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    // 让选中的按钮居中
+    [self setButtonAtCenter:button];
+    // 让选中的按钮方法
+    button.transform = CGAffineTransformMakeScale(transformScale, transformScale);
+}
+
+```
+
+缩放是渐变的, 因此在scrollViewDidScroll方法实现渐变
+
+```
+// 监听scrollView的滚动
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // 获取偏移量
+    CGFloat offsetX = scrollView.contentOffset.x;
+    
+    // 偏左的按钮
+    NSUInteger indexL = offsetX / screenW;
+    UIButton *leftButton = _buttons[indexL];
+    
+    // 右边的按钮
+    NSUInteger indexR = indexL + 1;
+    UIButton *rightButton = indexR < _buttons.count ? _buttons[indexR] : nil;
+
+    CGFloat rightScale = offsetX / screenW - indexL;
+    CGFloat leftScale = 1 - rightScale;
+    
+    leftButton.transform = CGAffineTransformMakeScale(leftScale * 0.3 + 1, leftScale * 0.3 + 1);
+    rightButton.transform = CGAffineTransformMakeScale(rightScale * 0.3 + 1, rightScale * 0.3 + 1);
+}
+```
+
+
+
+###按钮颜色渐变
+
+颜色是由三基色构成
+
+\\|R|G|B
+:-:|:-:|:-:|:-:
+红色|1|0|0
+黑色|0|0|0
+
+- 当前选中按钮
+	- 黑色 -> 红色
+- 之前选中按钮
+	- 红色 -> 黑色
+
+根据移动的比例, R值进行调整
+
+因为颜色也是渐变, 同样在scrollViewDidScroll:方法中实现渐变
+
+```
+// 监听scrollView的滚动
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // 获取偏移量
+    CGFloat offsetX = scrollView.contentOffset.x;
+    
+    // 偏左的按钮
+    NSUInteger indexL = offsetX / screenW;
+    UIButton *leftButton = _buttons[indexL];
+    
+    // 右边的按钮
+    NSUInteger indexR = indexL + 1;
+    UIButton *rightButton = indexR < _buttons.count ? _buttons[indexR] : nil;
+
+    CGFloat rightScale = offsetX / screenW - indexL;
+    CGFloat leftScale = 1 - rightScale;
+    
+    // 颜色渐变
+    // 右边按钮 -> 黑色 -> 红色  R: 0 ~ 1
+    UIColor *rightColor = [UIColor colorWithRed:rightScale green:0 blue:0 alpha:1];
+    UIColor *leftColor = [UIColor colorWithRed:leftScale green:0 blue:0 alpha:1];
+    [rightButton setTitleColor:rightColor forState:UIControlStateNormal];
+    // 左边按钮 -> 红色 -> 黑色  R: 1 ~ 0
+    [leftButton setTitleColor:leftColor forState:UIControlStateNormal];
+}
+```
+
+至此网易新闻主界面的简单结构搭建就完成了~

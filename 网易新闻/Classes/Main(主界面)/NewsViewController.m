@@ -21,6 +21,7 @@
 
 static const CGFloat navBarH = 64; // 导航栏高度
 static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
+static CGFloat const transformScale = 1.3; // 按钮缩放比例
 
 @interface NewsViewController () <UIScrollViewDelegate>
 
@@ -194,7 +195,7 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
     [self showVcView:offsetX];
     
     // 滚动到对应的view
-    _contentScrollView.contentOffset = CGPointMake(offsetX, 0);
+    [_contentScrollView setContentOffset:CGPointMake(offsetX, 0) animated:NO];
     
 }
 
@@ -203,15 +204,18 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
 {
     // 还原上一个按钮
     [_selectedButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    
-    // 选中按钮处理
-    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    // 还原尺寸
+    _selectedButton.transform = CGAffineTransformIdentity;
     
     // 记录选中按钮
     _selectedButton = button;
     
+    // 选中按钮处理
+    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     // 让选中的按钮居中
     [self setButtonAtCenter:button];
+    // 让选中的按钮方法
+    button.transform = CGAffineTransformMakeScale(transformScale, transformScale);
 }
 
 // 让选中的按钮居中显示
@@ -266,5 +270,34 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
     
     // 跳转
     [self showVcView:offsetX];
+}
+
+// 监听scrollView的滚动
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // 获取偏移量
+    CGFloat offsetX = scrollView.contentOffset.x;
+    
+    // 偏左的按钮
+    NSUInteger indexL = offsetX / screenW;
+    UIButton *leftButton = _buttons[indexL];
+    
+    // 右边的按钮
+    NSUInteger indexR = indexL + 1;
+    UIButton *rightButton = indexR < _buttons.count ? _buttons[indexR] : nil;
+
+    CGFloat rightScale = offsetX / screenW - indexL;
+    CGFloat leftScale = 1 - rightScale;
+    
+    leftButton.transform = CGAffineTransformMakeScale(leftScale * 0.3 + 1, leftScale * 0.3 + 1);
+    rightButton.transform = CGAffineTransformMakeScale(rightScale * 0.3 + 1, rightScale * 0.3 + 1);
+    
+    // 颜色渐变
+    // 右边按钮 -> 黑色 -> 红色  R: 0 ~ 1
+    UIColor *rightColor = [UIColor colorWithRed:rightScale green:0 blue:0 alpha:1];
+    UIColor *leftColor = [UIColor colorWithRed:leftScale green:0 blue:0 alpha:1];
+    [rightButton setTitleColor:rightColor forState:UIControlStateNormal];
+    // 左边按钮 -> 红色 -> 黑色  R: 1 ~ 0
+    [leftButton setTitleColor:leftColor forState:UIControlStateNormal];
 }
 @end
