@@ -120,3 +120,74 @@ static const CGFloat titleScrollViewH = 44;
     _contentScrollView.showsHorizontalScrollIndicator = NO;
 
 ```
+
+##监听按钮点击
+---
+在添加按钮时, 根据当前子控制器的下标, 给按钮设置tag, 以后就能根据tag来获取自控制器
+
+给按钮添加点击事件, 我们需要点击的按钮标题变为红色, 之前选中的按钮颜色变回黑色, 并且滚动到对应的view.
+
+程序一开始默认选中第一个按钮:头条
+
+```    
+    // 遍历所有子控制器
+    NSUInteger count = self.childViewControllers.count;
+    for (int i = 0; i < count; i++) {
+        UIViewController *vc = self.childViewControllers[i];
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        button.tag = i;
+        
+        // 按钮点击
+        if (0 == i) {
+            [self buttonClick:button];
+        }
+        [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_titleScrollView addSubview:button];
+    }
+```
+
+按钮点击, 需要一个额外的成员变量来记录当前被选中的按钮, 然后进行操作
+
+```
+// 选中按钮
+- (void)selectButton:(UIButton *)button
+{
+    // 还原上一个按钮
+    [_selectedButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    // 选中按钮处理
+    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    // 记录选中按钮
+    _selectedButton = button;
+}
+```
+
+跳转到相应的界面, view在我们用的时候才进行创建
+
+```
+// 按钮点击
+- (void)buttonClick:(UIButton *)button
+{
+    [self selectButton:button];
+    
+    // 取出对应控制器的view添加到内容滚动视图上去
+    NSUInteger index = button.tag;
+    UIViewController *showVc = self.childViewControllers[index];
+    
+    CGFloat showX = index * screenW;
+    CGFloat showY = 0;
+    CGFloat showW = screenW;
+    CGFloat showH = _contentScrollView.height;
+    showVc.view.frame = CGRectMake(showX, showY, showW, showH);
+    
+    [_contentScrollView addSubview:showVc.view];
+    
+    // 滚动到对应的view
+    _contentScrollView.contentOffset = CGPointMake(showX, 0);
+    
+}
+```
+
+在iOS7之后, UIScrollView增加了automaticallyAdjustsScrollViewInsets属性, 会给我们空出一个navigationBar/toolbar(44) + statusbar(20)的宽度, 造成错位, 记得将其设置为NO;

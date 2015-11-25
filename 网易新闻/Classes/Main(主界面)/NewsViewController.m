@@ -29,6 +29,8 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
 /** 内容滚动视图 */
 @property (nonatomic, weak) UIScrollView *contentScrollView;
 
+/** 当前选定的按钮 */
+@property (nonatomic, weak) UIButton *selectedButton;
 @end
 
 @implementation NewsViewController
@@ -48,6 +50,9 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
     // 4.添加标题按钮
     [self setUpButtonTitle];
     
+    // 5.取消额外滚动区域
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
 }
 
 // 1.添加标题滚动视图
@@ -61,7 +66,6 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
     CGFloat titleH = titleScrollViewH;
     
     titleScrollView.frame = CGRectMake(titleX, titleY, titleW, titleH);
-    titleScrollView.backgroundColor = [UIColor redColor];
     
     _titleScrollView = titleScrollView;
     [self.view addSubview:titleScrollView];
@@ -78,7 +82,7 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
     CGFloat contentH = screenH - contentY;
     
     contentScrollView.frame = CGRectMake(contentX, contentY, contentW, contentH);
-    contentScrollView.backgroundColor = [UIColor blueColor];
+    contentScrollView.backgroundColor = [UIColor lightGrayColor];
     
     _contentScrollView = contentScrollView;
     [self.view addSubview:contentScrollView];
@@ -91,11 +95,12 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
     TopLineViewController *topLineVc = [[TopLineViewController alloc] init];
     topLineVc.title = @"头条";
     [self addChildViewController:topLineVc];
+  
     // 热点
-    
     HotViewController *hotVc = [[HotViewController alloc] init];
     hotVc.title = @"热点";
     [self addChildViewController:hotVc];
+
     // 视频
     VideoViewController *videoVc = [[VideoViewController alloc] init];
     videoVc.title = @"视频";
@@ -130,12 +135,23 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
         UIViewController *vc = self.childViewControllers[i];
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        button.tag = i;
+        // 按钮文字颜色
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        // 按钮标题
         [button setTitle:vc.title forState:UIControlStateNormal];
 
         // 动态计算按钮frame
         buttonX = i * buttonW;
         button.frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);
+        
+        // 按钮点击
+        if (0 == i) {
+            [self buttonClick:button];
+        }
+        [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        
         
         [_titleScrollView addSubview:button];
     }
@@ -148,4 +164,38 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
     _contentScrollView.showsHorizontalScrollIndicator = NO;
 }
 
+// 按钮点击
+- (void)buttonClick:(UIButton *)button
+{
+    [self selectButton:button];
+    
+    // 取出对应控制器的view添加到内容滚动视图上去
+    NSUInteger index = button.tag;
+    UIViewController *showVc = self.childViewControllers[index];
+    
+    CGFloat showX = index * screenW;
+    CGFloat showY = 0;
+    CGFloat showW = screenW;
+    CGFloat showH = _contentScrollView.height;
+    showVc.view.frame = CGRectMake(showX, showY, showW, showH);
+    
+    [_contentScrollView addSubview:showVc.view];
+    
+    // 滚动到对应的view
+    _contentScrollView.contentOffset = CGPointMake(showX, 0);
+    
+}
+
+// 选中按钮
+- (void)selectButton:(UIButton *)button
+{
+    // 还原上一个按钮
+    [_selectedButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+
+    // 选中按钮处理
+    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    
+    // 记录选中按钮
+    _selectedButton = button;
+}
 @end
