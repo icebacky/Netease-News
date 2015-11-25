@@ -191,3 +191,32 @@ static const CGFloat titleScrollViewH = 44;
 ```
 
 在iOS7之后, UIScrollView增加了automaticallyAdjustsScrollViewInsets属性, 会给我们空出一个navigationBar/toolbar(44) + statusbar(20)的宽度, 造成错位, 记得将其设置为NO;
+
+## 监听内容滚动
+---
+给内容滚动视图设置分页.
+
+当翻到新一页的时候, 判断该view是否创建, 如果创建直接显示, 没有创建的话创建该view, 并跳转到这个页面, 选中对应的按钮
+
+我们发现, 创建跳转界面 点击按钮和 监听滚动都用到了, 我们可以将这个功能抽取成一个方法.
+
+页面的滚动, 需要让控制器遵守`<UIScrollViewDelegate>`协议, 并成为内容滚动视图的代理, 我们在滚动减速完成的时候 选中对应的按钮, 添加对应控制器的view
+
+```
+// 停止减速后, 选中对应按钮, 添加对应控制器view
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    // 获取最新偏移量
+    CGFloat offsetX = scrollView.contentOffset.x;
+    
+    // 当前滚动的页码
+    NSUInteger page = offsetX / screenW;
+    
+    // 选中按钮
+    [self selectButton:_buttons[page]];
+    
+    // 跳转
+    [self showVcView:offsetX];
+}
+```
+要想取出按钮, 我们需要将之前添加的按钮保存起来, 创建一个可变数组, 在创建按钮的时候将其保存到里面, 等到需要用的时候就可以取出来了

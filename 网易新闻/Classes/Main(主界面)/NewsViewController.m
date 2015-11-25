@@ -22,7 +22,7 @@
 static const CGFloat navBarH = 64; // 导航栏高度
 static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
 
-@interface NewsViewController ()
+@interface NewsViewController () <UIScrollViewDelegate>
 
 /** 标题滚动视图 */
 @property (nonatomic, weak) UIScrollView *titleScrollView;
@@ -31,6 +31,9 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
 
 /** 当前选定的按钮 */
 @property (nonatomic, weak) UIButton *selectedButton;
+
+/** 保存所有按钮 */
+@property (nonatomic, strong) NSMutableArray *buttons;
 @end
 
 @implementation NewsViewController
@@ -55,6 +58,17 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
     
 }
 
+#pragma mark - lazy
+
+- (NSMutableArray *)buttons
+{
+    if (!_buttons) {
+        _buttons = [NSMutableArray array];
+    }
+    return _buttons;
+}
+
+#pragma mark - 初始化控件
 // 1.添加标题滚动视图
 - (void)setUpTitleScrollView {
     
@@ -87,6 +101,8 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
     _contentScrollView = contentScrollView;
     [self.view addSubview:contentScrollView];
     
+    contentScrollView.pagingEnabled = YES;
+    contentScrollView.delegate = self;
 }
 
 // 3.添加所有子控制器
@@ -95,12 +111,12 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
     TopLineViewController *topLineVc = [[TopLineViewController alloc] init];
     topLineVc.title = @"头条";
     [self addChildViewController:topLineVc];
-  
+    
     // 热点
     HotViewController *hotVc = [[HotViewController alloc] init];
     hotVc.title = @"热点";
     [self addChildViewController:hotVc];
-
+    
     // 视频
     VideoViewController *videoVc = [[VideoViewController alloc] init];
     videoVc.title = @"视频";
@@ -141,7 +157,7 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         // 按钮标题
         [button setTitle:vc.title forState:UIControlStateNormal];
-
+        
         // 动态计算按钮frame
         buttonX = i * buttonW;
         button.frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);
@@ -154,6 +170,9 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
         
         
         [_titleScrollView addSubview:button];
+        
+        // 保存到数组
+        [self.buttons addObject:button];
     }
     
     // 标题和内容滚动视图的contentSize, 隐藏水平指示器
@@ -164,25 +183,18 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
     _contentScrollView.showsHorizontalScrollIndicator = NO;
 }
 
+#pragma mark - 逻辑操作
 // 按钮点击
 - (void)buttonClick:(UIButton *)button
 {
     [self selectButton:button];
     
-    // 取出对应控制器的view添加到内容滚动视图上去
-    NSUInteger index = button.tag;
-    UIViewController *showVc = self.childViewControllers[index];
-    
-    CGFloat showX = index * screenW;
-    CGFloat showY = 0;
-    CGFloat showW = screenW;
-    CGFloat showH = _contentScrollView.height;
-    showVc.view.frame = CGRectMake(showX, showY, showW, showH);
-    
-    [_contentScrollView addSubview:showVc.view];
+    NSInteger i = button.tag;
+    CGFloat offsetX = i * screenW;
+    [self showVcView:offsetX];
     
     // 滚动到对应的view
-    _contentScrollView.contentOffset = CGPointMake(showX, 0);
+    _contentScrollView.contentOffset = CGPointMake(offsetX, 0);
     
 }
 
@@ -191,11 +203,47 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
 {
     // 还原上一个按钮
     [_selectedButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-
+    
     // 选中按钮处理
     [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     
     // 记录选中按钮
     _selectedButton = button;
+}
+
+// 显示控制器view
+- (void)showVcView:(CGFloat)offsetX
+{
+    // 取出对应控制器的view添加到内容滚动视图上去
+    NSUInteger index = offsetX / screenW;
+    UIViewController *showVc = self.childViewControllers[index];
+    
+    // 判断下当前控制器有没有加载完成
+    if (showVc.isViewLoaded) return;
+    
+    CGFloat showX = index * screenW;
+    CGFloat showY = 0;
+    CGFloat showW = screenW;
+    CGFloat showH = _contentScrollView.height;
+    showVc.view.frame = CGRectMake(showX, showY, showW, showH);
+    
+    [_contentScrollView addSubview:showVc.view];
+}
+
+#pragma mark - UIScrollViewDelegate
+// 停止减速后, 选中对应按钮, 添加对应控制器view
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    // 获取最新偏移量
+    CGFloat offsetX = scrollView.contentOffset.x;
+    
+    // 当前滚动的页码
+    NSUInteger page = offsetX / screenW;
+    
+    // 选中按钮
+    [self selectButton:_buttons[page]];
+    
+    // 跳转
+    [self showVcView:offsetX];
 }
 @end
