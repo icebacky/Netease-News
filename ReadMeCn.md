@@ -80,3 +80,43 @@ static const CGFloat titleScrollViewH = 44;
 ```
 
 目前滚动视图上面还没有内容, 也没确定contentSize, 尚不能滚动, 我们将在下一步完善
+
+## 新闻标题按钮设置
+---
+给每个对应的控制器设置一个按钮, 之后点击按钮就能跳转到相应控制器的view(未实现), 并将按钮添加到标题滚动视图
+
+按钮取决于对应的控制器
+
+```
+    CGFloat buttonW = 100;
+    CGFloat buttonH = titleScrollViewH;
+    CGFloat buttonX = 0;
+    CGFloat buttonY = 0;
+    
+    // 遍历所有子控制器
+    NSUInteger count = self.childViewControllers.count;
+    for (int i = 0; i < count; i++) {
+        UIViewController *vc = self.childViewControllers[i];
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitle:vc.title forState:UIControlStateNormal];
+
+        // 动态计算按钮frame
+        buttonX = i * buttonW;
+        button.frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);
+        
+        [_titleScrollView addSubview:button];
+    }
+
+```
+知道按钮的细节之后, 我们可以给titleScrollView和contentScrollView设置contentSize, 并将水平指示器隐藏
+
+```
+    _titleScrollView.contentSize = CGSizeMake(buttonW * count, 0);
+    _titleScrollView.showsHorizontalScrollIndicator = NO;
+    
+    _contentScrollView.contentSize = CGSizeMake(screenW * count, 0);
+    _contentScrollView.showsHorizontalScrollIndicator = NO;
+
+```

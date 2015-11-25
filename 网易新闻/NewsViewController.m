@@ -36,11 +36,17 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // 1.添加标题滚动视图
     [self setUpTitleScrollView];
     
+    // 2.添加内容滚动视图
     [self setUpContentScrollView];
     
+    // 3.添加所有的子控制器
     [self setUpAllChildViewController];
+    
+    // 4.添加标题按钮
+    [self setUpButtonTitle];
     
 }
 
@@ -74,7 +80,7 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
     contentScrollView.frame = CGRectMake(contentX, contentY, contentW, contentH);
     contentScrollView.backgroundColor = [UIColor blueColor];
     
-    _titleScrollView = contentScrollView;
+    _contentScrollView = contentScrollView;
     [self.view addSubview:contentScrollView];
     
 }
@@ -109,6 +115,37 @@ static const CGFloat titleScrollViewH = 44; // 标题滚动视图高度
     ScienceViewController *scienceVc = [[ScienceViewController alloc] init];
     scienceVc.title = @"科技";
     [self addChildViewController:scienceVc];
+}
+
+// 4.添加按钮
+- (void)setUpButtonTitle {
+    CGFloat buttonW = 100;
+    CGFloat buttonH = titleScrollViewH;
+    CGFloat buttonX = 0;
+    CGFloat buttonY = 0;
+    
+    // 遍历所有子控制器
+    NSUInteger count = self.childViewControllers.count;
+    for (int i = 0; i < count; i++) {
+        UIViewController *vc = self.childViewControllers[i];
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitle:vc.title forState:UIControlStateNormal];
+
+        // 动态计算按钮frame
+        buttonX = i * buttonW;
+        button.frame = CGRectMake(buttonX, buttonY, buttonW, buttonH);
+        
+        [_titleScrollView addSubview:button];
+    }
+    
+    // 标题和内容滚动视图的contentSize, 隐藏水平指示器
+    _titleScrollView.contentSize = CGSizeMake(buttonW * count, 0);
+    _titleScrollView.showsHorizontalScrollIndicator = NO;
+    
+    _contentScrollView.contentSize = CGSizeMake(screenW * count, 0);
+    _contentScrollView.showsHorizontalScrollIndicator = NO;
 }
 
 @end
